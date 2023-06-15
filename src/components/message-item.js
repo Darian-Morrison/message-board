@@ -3,17 +3,13 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import { formatRelative } from "date-fns";
 import { capitalizeFirstLetter } from "@/utils/string-helpers";
+import { deleteMessage } from "@/utils/actions/message-actions";
 
 export default function MessageItem({ message }) {
   const router = useRouter();
 
   const handleDeleteMessage = async (id) => {
-    await fetch(`/api/messages/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    await deleteMessage(id);
     router.refresh();
   };
 

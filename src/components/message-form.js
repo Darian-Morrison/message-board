@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { createMessage } from "@/utils/actions/message-actions";
 
 export default function MessageForm() {
   const router = useRouter();
@@ -13,15 +14,7 @@ export default function MessageForm() {
 
   const handleNewMessageSubmit = async (event) => {
     event.preventDefault();
-    await fetch(`/api/messages`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        text: newMessage,
-      }),
-    });
+    await createMessage({ text: newMessage });
     setNewMessage("");
     router.refresh();
   };
