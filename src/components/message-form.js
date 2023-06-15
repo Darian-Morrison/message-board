@@ -27,8 +27,8 @@ export default function MessageForm() {
   };
 
   return (
-    <form onSubmit={handleNewMessageSubmit}>
-      <input
+    <form className="flex flex-col" onSubmit={handleNewMessageSubmit}>
+      <textarea
         className="mt-2 p-2 border rounded-md w-full"
         type="text"
         placeholder="Type your message here..."
@@ -36,7 +36,7 @@ export default function MessageForm() {
         onChange={handleNewMessageChange}
       />
       <button
-        className="mt-2 p-2 bg-blue-500 text-white rounded-md w-full"
+        className="mt-2 p-2 w-40 bg-blue-500 text-white rounded-md mx-auto"
         type="submit"
       >
         Submit
