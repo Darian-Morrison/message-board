@@ -1,13 +1,14 @@
 "use client";
 import { useState } from "react";
+import { Message } from '@prisma/client'
 
 import MessageForm from "@/components/message-form";
 import MessageItem from "@/components/message-item";
 
-export default function MessageBoard({ messages }) {
+export default function MessageBoard({ messages }: {messages: Message[] }){
   const [readOnly, setReadOnly] = useState(false);
-  const handleReadOnlyChange = (event) => {
-    setReadOnly(event.target.checked);
+  const handleReadOnlyChange = (event: React.ChangeEvent<HTMLInputElement> ) => {
+    setReadOnly(event?.target?.checked || false);
   };
 
   return (

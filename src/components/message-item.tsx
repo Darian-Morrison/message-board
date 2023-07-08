@@ -4,11 +4,18 @@ import { useRouter } from "next/navigation";
 import { formatRelative } from "date-fns";
 import { capitalizeFirstLetter } from "@/utils/string-helpers";
 import { deleteMessage } from "@/utils/actions/message-actions";
+import { Message } from "@prisma/client";
 
-export default function MessageItem({ message, readOnly }) {
+export default function MessageItem({
+  message,
+  readOnly,
+}: {
+  message: Message;
+  readOnly: Boolean;
+}) {
   const router = useRouter();
 
-  const handleDeleteMessage = async (id) => {
+  const handleDeleteMessage = async (id: number) => {
     await deleteMessage(id);
     router.refresh();
   };

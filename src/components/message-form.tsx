@@ -8,11 +8,11 @@ export default function MessageForm() {
   const router = useRouter();
   const [newMessage, setNewMessage] = useState("");
 
-  const handleNewMessageChange = (event) => {
-    setNewMessage(event.target.value);
+  const handleNewMessageChange = (event : React.ChangeEvent<HTMLTextAreaElement>  ) => {
+    setNewMessage(event?.target?.value);
   };
 
-  const handleNewMessageSubmit = async (event) => {
+  const handleNewMessageSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     await createMessage({ text: newMessage });
     setNewMessage("");
@@ -23,7 +23,6 @@ export default function MessageForm() {
     <form className="flex flex-col" onSubmit={handleNewMessageSubmit}>
       <textarea
         className="mt-2 p-2 border rounded-md w-full"
-        type="text"
         placeholder="Type your message here..."
         value={newMessage}
         onChange={handleNewMessageChange}
